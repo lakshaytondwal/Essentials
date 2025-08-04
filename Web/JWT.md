@@ -12,13 +12,13 @@ A **JWT (JSON Web Token)** is a compact, URL-safe token used to represent claims
 
 It consists of three parts, each **Base64URL-encoded**:
 
-```
+```console
 Header.Payload.Signature
 ```
 
 Example:
 
-```
+```console
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJhZG1pbiI6dHJ1ZX0.
 dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk

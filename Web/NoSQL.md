@@ -205,6 +205,54 @@ username[$regex]=^a.*&password[$ne]=xyz
 
 ---
 
+## NoSQL Regex Note: `{X}` vs `{X}$`
+
+### `^.{X}`
+
+* Matches strings with **at least X characters**
+* Useful for testing **minimum length**
+* Can give **false positives** if the string is longer than X
+
+**Example:**
+
+```nosql
+password[$regex]=^.{6}
+```
+
+Matches: `"secret"`, `"secret123"`
+Does not match: `"short"`
+
+---
+
+### `^.{X}$`
+
+* Matches strings with **exactly X characters**
+* Best for testing **exact password length**
+
+**Example:**
+
+```nosql
+password[$regex]=^.{6}$
+```
+
+Matches: `"secret"`
+Does not match: `"secret1"`, `"short"`
+
+---
+
+### Tip
+
+Use `$` when:
+
+* You want to confirm the **exact length** of a value
+* You're brute-forcing a password **character-by-character**
+
+---
+
+Let me know if you want this exported as Markdown or added to your full NoSQLi guide.
+
+---
+
 **Tip**: Use tools like **Burp Suite Intruder**, **ffuf**, or **custom scripts** to automate character guessing and regex payload testing
 
 ---
