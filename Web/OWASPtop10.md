@@ -1,0 +1,14 @@
+# Top 10 — 2025
+
+| **Risk (Code)**                                       | **Description (Plain)**                                                                       | **Practical Example**                                                                     |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **A01:2025 – Broken Access Control**                  | System lets users do things they shouldn’t because authorization checks are missing or weak.  | A regular user changes `id=123` to `id=124` in a URL and sees someone else’s data (IDOR). |
+| **A02:2025 – Security Misconfiguration**              | Insecure defaults, mis-set permissions, or exposed services because configs weren’t hardened. | Admin panel reachable at `/admin` with no auth; debug mode left on in production.         |
+| **A03:2025 – Software Supply Chain Failures**         | Compromise or tampering in dependencies, third-party packages, build pipelines, or artifacts. | A malicious npm package gets pulled into a build, injecting backdoor code.                |
+| **A04:2025 – Cryptographic Failures**                 | Using weak algorithms or mishandling keys leading to data exposure or impersonation.          | Storing passwords in MD5 instead of bcrypt / Argon2.                                      |
+| **A05:2025 – Injection**                              | Untrusted data is sent to interpreters, altering queries or commands.                         | SQL Injection: `' OR 1=1 --` in login form returns all rows.                              |
+| **A06:2025 – Insecure Design**                        | Flawed application logic or architecture that inherently allows abuse or bypass.              | Shopping cart doesn’t check stock before accepting order, letting negative inventory.     |
+| **A07:2025 – Authentication Failures**                | Weak or missing authentication checks, flawed credentials workflows.                          | Allows login with blank passwords or predictable session IDs.                             |
+| **A08:2025 – Software or Data Integrity Failures**    | Trusted code/data isn’t verified; unchecked inputs get executed or trusted incorrectly.       | Loading unsigned updates or deserializing untrusted data.                                 |
+| **A09:2025 – Security Logging and Alerting Failures** | Logs exist but aren’t monitored; alerts never trigger — incidents go unnoticed.               | No alert when 1000 failed login attempts occur in 5 minutes.                              |
+| **A10:2025 – Mishandling of Exceptional Conditions**  | Bad error handling, failing open, or unhandled edge cases create security holes.              | App crashes on unusual input and dumps stack trace with secrets to users.                 |
