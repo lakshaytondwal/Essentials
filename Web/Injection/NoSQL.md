@@ -247,12 +247,6 @@ Use `$` when:
 * You want to confirm the **exact length** of a value
 * You're brute-forcing a password **character-by-character**
 
----
-
-Let me know if you want this exported as Markdown or added to your full NoSQLi guide.
-
----
-
 **Tip**: Use tools like **Burp Suite Intruder**, **ffuf**, or **custom scripts** to automate character guessing and regex payload testing
 
 ---

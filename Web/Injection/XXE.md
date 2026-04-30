@@ -114,10 +114,6 @@ This sends a base64-encoded version of the file to the attacker.
 
 ---
 
-Absolutely. Here's a clearer, practical version of the explanation — now including an example of **what fails** if you don't use parameter entities, and **why**.
-
----
-
 ### Why Use Parameter Entities (`%`)
 
 #### The Basics
