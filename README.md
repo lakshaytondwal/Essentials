@@ -1,4 +1,4 @@
-# Essentials
+# Offensive Security Playbook
 
 A personal **cybersecurity and technical reference archive**.  
 This is where I keep configuration files, scripts, research notes, and other essential materials that I need quick access to from anywhere.  
