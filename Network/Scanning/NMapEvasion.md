@@ -1,4 +1,4 @@
-# NMap Firewall and IDS Evasion Techniques
+# Firewall Detection and Firewall/IDS Evasion Using Nmap
 
 Firewalls and Intrusion Detection Systems (IDS) analyze packet structure, timing, and origin to detect scans.
 
@@ -244,11 +244,97 @@ Zombie must have predictable IP ID sequence.
 
 ---
 
-## 8. NULL, FIN, and Xmas Scans (TCP Flag Evasion)
+## 8. Detection
+
+These scans are mainly used to analyze **firewall filtering behavior** and determine whether ports are filtered or unfiltered. Unlike SYN scans, some of these techniques do not directly determine whether a port is open.
+
+### 8.1 TCP ACK Scan (-sA)
+
+```bash
+sudo nmap -sA target_ip
+```
+
+Sends a TCP packet with the **ACK flag set**.
+
+Response:
+
+RST → Unfiltered port
+
+No response → Filtered port
+
+ICMP unreachable → Filtered port
+
+Purpose:
+
+* Map firewall rule sets
+* Identify filtered and unfiltered ports
+* Help analyze stateful vs. stateless firewall behavior
+
+Important:
+
+An ACK scan **cannot determine whether a port is open or closed**.
+
+### 8.2 TCP Window Scan (-sW)
+
+```bash
+sudo nmap -sW target_ip
+```
+
+Sends a TCP packet with the **ACK flag set** and examines the **TCP Window field** in the returned RST packet.
+
+Response on supported systems:
+
+Positive TCP Window size → Open port
+
+Zero TCP Window size → Closed port
+
+No response → Filtered port
+
+Purpose:
+
+* Differentiate open and closed ports on certain operating systems
+* Exploit TCP implementation differences
+* Perform firewall and port-state analysis
+
+Important:
+
+This technique is **OS-dependent** and does not work reliably against every system.
+
+### 8.3 TCP Maimon Scan (-sM)
+
+```bash
+sudo nmap -sM target_ip
+```
+
+Sends a TCP packet with:
+
+FIN + ACK
+
+Response:
+
+RST → Closed port
+
+No response → Open or filtered port
+
+Purpose:
+
+* Bypass certain packet-filtering firewalls
+* Perform stealth port enumeration
+* Exploit behavior found mainly in older BSD-derived TCP/IP implementations
+
+Important:
+
+Open and filtered ports usually cannot be distinguished, so Nmap reports them as:
+
+`open|filtered`
+
+---
+
+## 9. NULL, FIN, and Xmas Scans (TCP Flag Evasion)
 
 These scans manipulate TCP flags to bypass firewalls that primarily filter SYN packets. They rely on RFC-defined behavior where closed ports respond with RST, while open ports ignore unexpected packets.
 
-### 8.1 NULL Scan (-sN)
+### 9.1 NULL Scan (-sN)
 
 ```bash
 sudo nmap -sN target_ip
@@ -266,7 +352,7 @@ Purpose:
 * Evade simple firewalls
 * Identify open ports indirectly
 
-### 8.2 FIN Scan (-sF)
+### 9.2 FIN Scan (-sF)
 
 ```bash
 sudo nmap -sF target_ip
@@ -284,7 +370,7 @@ Purpose:
 * Firewall evasion
 * Stealth enumeration
 
-### 8.3 Xmas Scan (-sX)
+### 9.3 Xmas Scan (-sX)
 
 ```bash
 sudo nmap -sX target_ip
@@ -312,7 +398,7 @@ Works best on Linux, Unix, and BSD systems.
 
 ---
 
-## 9. Real-World Stealth Scan Example
+## 10. Scan Example
 
 ```bash
 sudo nmap -sS -Pn -p- -sV -O -sC -f --scan-delay 2s -oA stealth_scan target_ip
@@ -334,3 +420,5 @@ Includes:
 Evasion flags do not magically make you invisible. Modern enterprise IDS (Suricata, Zeek, Palo Alto, CrowdStrike) reconstruct fragments, normalize packets, and detect timing anomalies using statistical models. Fragmentation and delays mainly defeat weak or misconfigured defenses, not mature ones.
 
 The real stealth comes from behavioral camouflage—scanning like a normal system would, blending into expected traffic patterns, and minimizing noise. The best scan is often the quietest, smallest, and most targeted one, not the loud “scan everything with every trick” approach.
+
+---
