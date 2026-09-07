@@ -19,7 +19,7 @@ While this is primarily a personal vault, I also present this repository as a te
 Because I periodically wipe or rewrite the commit history for maintenance, cleanliness, or structural changes, the commit log may make it look like this repository was spun up recently. If you want to verify how long I have actually been building and maintaining this archive, you can check the repository's original creation date directly through the GitHub API.
 
 Simply visit the link below and look for the `"created_at"` timestamp:
-[`https://api.github.com/repos/lakshaytondwal/Essentials`](https://api.github.com/repos/lakshaytondwal/Essentials)
+[`https://api.github.com/repos/lakshaytondwal/`](https://api.github.com/repositories/1007939081)
 
 > **Disclaimer:** Some of the content here might look basic by your standards. I’m still a beginner — and probably will be refining my skills for years. Some material may be adapted or copied from external sources for personal learning and reference. This repository is **not** an original works showcase; it’s a practical memory aid.
 
