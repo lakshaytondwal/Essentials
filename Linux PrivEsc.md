@@ -83,6 +83,30 @@ sudo -l
 
 * There might be cron jobs or Scripts scheduled to run frequently.
 
+```txt
+Cron jobs
+│
+├── User crontabs
+│   ├── alice → crontab -u alice -l
+│   ├── bob   → crontab -u bob -l
+│   └── root  → crontab -l
+│
+├── /etc/crontab
+│   └── System-wide jobs
+│       └── has USER column
+│
+├── /etc/cron.d/
+│   ├── backup
+│   ├── database-cleanup
+│   └── my-app
+│       └── each has USER column
+│
+└── /etc/cron.hourly/
+    /etc/cron.daily/
+    /etc/cron.weekly/
+    /etc/cron.monthly/
+```
+
 ```bash
 cat /etc/crontab
 ```
